@@ -42,7 +42,7 @@
             const results = regex.exec(url); // Ejecuta la expresión regular en la URL
             if (!results) return null; // Si no encuentra resultados, retorna null
             if (!results[2]) return ''; // Si no hay un valor después del '=', retorna una cadena vacía
-            return decodeURIComponent(results[2].replace(/\+/g, ' ')); // Decodifica el valor del parámetro y reemplaza los '+' con espacios
+            return decodeURIComponent(results[2].replace(/\\+/g, ' ')); // Decodifica el valor del parámetro y reemplaza los '+' con espacios
         }
 
         // Asignar la fecha al elemento del HTML

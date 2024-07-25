@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,7 +29,7 @@
 </head>
 <body>
     <div id="recibo">
-        <h1>Recibo de Envíos del <span id="fecha"></span></h1> <!-- Título del recibo -->
+        <h1>Recibo de Envíos</h1> <!-- Título del recibo -->
         <div id="registros"></div> <!-- Contenedor para los registros -->
     </div>
 
@@ -38,7 +37,7 @@
         // Función para obtener los parámetros de la URL
         function getParameterByName(name) {
             const url = window.location.href; // Obtiene la URL completa
-            const nameEscaped = name.replace(/[\[\]]/g, '\$&'); // Escapa caracteres especiales
+            const nameEscaped = name.replace(/[\[\]]/g, '\\$&'); // Escapa caracteres especiales
             const regex = new RegExp('[?&]' + nameEscaped + '(=([^&#]*)|&|#|$)'); // Crea una expresión regular para encontrar el parámetro
             const results = regex.exec(url); // Ejecuta la expresión regular en la URL
             if (!results) return null; // Si no encuentra resultados, retorna null
@@ -47,7 +46,8 @@
         }
 
         // Asignar la fecha al elemento del HTML
-        document.getElementById('fecha').textContent = getParameterByName('fecha');
+        const fecha = getParameterByName('fecha');
+        document.getElementById('fecha').textContent = fecha;
 
         // Obtener los IDs de los registros
         const ids = getParameterByName('ids').split(',');

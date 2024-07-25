@@ -45,43 +45,32 @@
             return decodeURIComponent(results[2].replace(/\+/g, ' ')); // Decodifica el valor del parámetro y reemplaza los '+' con espacios
         }
 
-        // Obtener el ID del registro
+        // Obtener los parámetros de la URL
         const id = getParameterByName('id');
-
-        // Función para obtener los detalles de un registro por ID (simulación, reemplazar con datos reales)
-        function getRegistroById(id) {
-            // Simulación de datos, reemplaza esto con una llamada a tu backend si es necesario
-            return {
-                idTarea: id,
-                diaTarea: '2023-07-24',
-                horaTarea: '10:00',
-                estadoTarea: 'Completado',
-                clienteTarea: 'Cliente ' + id,
-                observacionTarea: 'Observación para ' + id,
-                categoriaTarea: 'Categoría para ' + id,
-                accionesTareas: 'Acciones para ' + id,
-                numeroEnvio: 'Envio ' + id,
-                choferTarea: 'Chofer para ' + id
-            };
-        }
-
-        // Obtener los detalles del registro
-        const registro = getRegistroById(id);
+        const diaTarea = getParameterByName('diaTarea');
+        const horaTarea = getParameterByName('horaTarea');
+        const estadoTarea = getParameterByName('estadoTarea');
+        const clienteTarea = getParameterByName('clienteTarea');
+        const observacionTarea = getParameterByName('observacionTarea');
+        const categoriaTarea = getParameterByName('categoriaTarea');
+        const accionesTareas = getParameterByName('accionesTareas');
+        const numeroEnvio = getParameterByName('numeroEnvio');
+        const choferTarea = getParameterByName('choferTarea');
 
         // Generar el HTML para el registro y agregarlo al contenedor
         const registrosContainer = document.getElementById('registros');
         const registroHTML = `
             <div class="registro">
-                <p>ID Tarea: ${registro.idTarea}</p>
-                <p>Fecha de la Tarea: ${registro.diaTarea}</p>
-                <p>Hora de la Tarea: ${registro.horaTarea}</p>
-                <p>Estado de la Tarea: ${registro.estadoTarea}</p>
-                <p>Cliente: ${registro.clienteTarea}</p>
-                <p>Observaciones: ${registro.observacionTarea}</p>
-                <p>Categoría: ${registro.categoriaTarea}</p>
-                <p>Acciones: ${registro.accionesTareas}</p>
-                <p>Número de Envío: ${registro.numeroEnvio}</p>
-                <p>Chofer: ${registro.choferTarea}</p>
+                <p>ID Tarea: ${id}</p>
+                <p>Fecha de la Tarea: ${diaTarea}</p>
+                <p>Hora de la Tarea: ${horaTarea}</p>
+                <p>Estado de la Tarea: ${estadoTarea}</p>
+                <p>Cliente: ${clienteTarea}</p>
+                <p>Observaciones: ${observacionTarea}</p>
+                <p>Categoría: ${categoriaTarea}</p>
+                <p>Acciones: ${accionesTareas}</p>
+                <p>Número de Envío: ${numeroEnvio}</p>
+                <p>Chofer: ${choferTarea}</p>
             </div>
             <hr>
         `;

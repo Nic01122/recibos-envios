@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"> <!-- Especifica la codificación de caracteres -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la escala para dispositivos móviles -->
-    <title>Recibo de Envíos</title> <!-- Título de la página -->
+    <title>Nota de Envío</title> <!-- Título de la página -->
     <style>
         /* Estilos CSS mejorados */
         body {
@@ -62,30 +62,30 @@
         }
 
         // Obtener los parámetros de la URL
-        const id = getParameterByName('id');
+        const numeroEnvio = getParameterByName('numeroEnvio');
         const diaTarea = getParameterByName('diaTarea');
         const horaTarea = getParameterByName('horaTarea');
         const estadoTarea = getParameterByName('estadoTarea');
-        const clienteTarea = getParameterByName('clienteTarea');
         const observacionTarea = getParameterByName('observacionTarea');
         const categoriaTarea = getParameterByName('categoriaTarea');
         const accionesTareas = getParameterByName('accionesTareas');
-        const numeroEnvio = getParameterByName('numeroEnvio');
+        const clienteTarea = getParameterByName('clienteTarea');
         const choferTarea = getParameterByName('choferTarea');
 
         // Generar el HTML para el registro y agregarlo al contenedor
         const registrosContainer = document.getElementById('registros');
         const registroHTML = `
             <div class="registro">
-                <p><span class="label">ID Tarea:</span> ${id}</p>
+                
                 <p><span class="label">Fecha de la Tarea:</span> ${diaTarea}</p>
-                <p><span class="label">Hora de la Tarea:</span> ${horaTarea}</p>
-                <p><span class="label">Estado de la Tarea:</span> ${estadoTarea}</p>
-                <p><span class="label">Cliente:</span> ${clienteTarea}</p>
+                <p><span class="label">Número de Envío:</span> ${numeroEnvio}</p>
                 <p><span class="label">Observaciones:</span> ${observacionTarea}</p>
+                <p><span class="label">Estado de la Tarea:</span> ${estadoTarea}</p>
+                <p><span class="label">Hora de la Tarea:</span> ${horaTarea}</p>
+                
                 <p><span class="label">Categoría:</span> ${categoriaTarea}</p>
                 <p><span class="label">Acciones:</span> ${accionesTareas}</p>
-                <p><span class="label">Número de Envío:</span> ${numeroEnvio}</p>
+                <p><span class="label">Cliente:</span> ${clienteTarea}</p>
                 <p><span class="label">Chofer:</span> ${choferTarea}</p>
             </div>
             <hr>

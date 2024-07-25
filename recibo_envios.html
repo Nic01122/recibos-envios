@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Especifica la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la escala para dispositivos móviles -->
+    <title>Recibo de Envíos</title> <!-- Título de la página -->
+    <style>
+        /* Agrega aquí tus estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #000;
+        }
+        #recibo {
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .registro {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="recibo">
+        <h1>Recibo de Envíos del <span id="fecha"></span></h1> <!-- Título del recibo -->
+        <div id="registros"></div> <!-- Contenedor para los registros -->
+    </div>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getParameterByName(name) {
+            const url = window.location.href; // Obtiene la URL completa
+            const nameEscaped = name.replace(/[\[\]]/g, '\$&'); // Escapa caracteres especiales
+            const regex = new RegExp('[?&]' + nameEscaped + '(=([^&#]*)|&|#|$)'); // Crea una expresión regular para encontrar el parámetro
+            const results = regex.exec(url); // Ejecuta la expresión regular en la URL
+            if (!results) return null; // Si no encuentra resultados, retorna null
+            if (!results[2]) return ''; // Si no hay un valor después del '=', retorna una cadena vacía
+            return decodeURIComponent(results[2].replace(/\+/g, ' ')); // Decodifica el valor del parámetro y reemplaza los '+' con espacios
+        }
+
+        // Asignar la fecha al elemento del HTML
+        document.getElementById('fecha').textContent = getParameterByName('fecha');
+
+        // Obtener los IDs de los registros
+        const ids = getParameterByName('ids').split(',');
+
+        // Función para obtener los detalles de un registro por ID (simulación, reemplazar con datos reales)
+        function getRegistroById(id) {
+            // Simulación de datos, reemplaza esto con una llamada a tu backend si es necesario
+            return {
+                idTarea: id,
+                diaTarea: '2023-07-24',
+                horaTarea: '10:00',
+                estadoTarea: 'Completado',
+                clienteTarea: 'Cliente ' + id,
+                observacionTarea: 'Observación ' + id,
+                categoriaTarea: 'Categoría ' + id,
+                accionesTareas: 'Acciones ' + id,
+                numeroEnvio: 'Envio ' + id,
+                choferTarea: 'Chofer ' + id
+            };
+        }
+
+        // Contenedor para los registros
+        const registrosContainer = document.getElementById('registros');
+
+        // Generar el HTML para cada registro y agregarlo al contenedor
+        ids.forEach(id => {
+            const registro = getRegistroById(id);
+            const registroHTML = `
+                <div class="registro">
+                    <p>ID Tarea: ${registro.idTarea}</p>
+                    <p>Fecha de la Tarea: ${registro.diaTarea}</p>
+                    <p>Hora de la Tarea: ${registro.horaTarea}</p>
+                    <p>Estado de la Tarea: ${registro.estadoTarea}</p>
+                    <p>Cliente: ${registro.clienteTarea}</p>
+                    <p>Observaciones: ${registro.observacionTarea}</p>
+                    <p>Categoría: ${registro.categoriaTarea}</p>
+                    <p>Acciones: ${registro.accionesTareas}</p>
+                    <p>Número de Envío: ${registro.numeroEnvio}</p>
+                    <p>Chofer: ${registro.choferTarea}</p>
+                </div>
+                <hr>
+            `;
+            registrosContainer.innerHTML += registroHTML;
+        });
+    </script>
+</body>
+</html>

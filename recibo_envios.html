@@ -41,12 +41,28 @@
             font-weight: bold;
             color: #555;
         }
+        @media print {
+            body {
+                width: 15cm;
+                height: 10cm;
+                margin: 0;
+            }
+            #recibo {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+            .print-button {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="recibo">
         <h1>Recibo de Envíos</h1> <!-- Título del recibo -->
         <div id="registros"></div> <!-- Contenedor para los registros -->
+        <button class="print-button" onclick="window.print()">Imprimir</button> <!-- Botón de impresión -->
     </div>
 
     <script>

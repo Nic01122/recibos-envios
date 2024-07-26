@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Especifica la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la escala para dispositivos móviles -->
+    <title>Recibo de Entrada</title> <!-- Título de la página -->
+    <style>
+        /* Estilos CSS mejorados */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        #recibo {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .registro {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .registro:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="recibo">
+        <h1>Recibo de Entrada</h1> <!-- Título del recibo -->
+        <div id="registros"></div> <!-- Contenedor para los registros -->
+    </div>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getParameterByName(name) {
+            const url = window.location.href; // Obtiene la URL completa
+            const nameEscaped = name.replace(/[\[\]]/g, '\\$&'); // Escapa caracteres especiales
+            const regex = new RegExp('[?&]' + nameEscaped + '(=([^&#]*)|&|#|$)'); // Crea una expresión regular para encontrar el parámetro
+            const results = regex.exec(url); // Ejecuta la expresión regular en la URL
+            if (!results) return null; // Si no encuentra resultados, retorna null
+            if (!results[2]) return ''; // Si no hay un valor después del '=', retorna una cadena vacía
+            return decodeURIComponent(results[2].replace(/\+/g, ' ')); // Decodifica el valor del parámetro y reemplaza los '+' con espacios
+        }
+
+        // Obtener los parámetros de la URL
+        const idEnvio = getParameterByName('idEnvio');
+        const codigoEnvio = getParameterByName('codigoEnvio');
+        const diaHora = getParameterByName('diaHora');
+        const hora = getParameterByName('hora');
+        const numeroEnvio = getParameterByName('numeroEnvio');
+        const cliente = getParameterByName('cliente');
+        const nombreCliente = getParameterByName('nombreCliente');
+
+        // Generar el HTML para el registro y agregarlo al contenedor
+        const registrosContainer = document.getElementById('registros');
+        const registroHTML = `
+            <div class="registro">
+                <p><span class="label">ID Envío:</span> ${idEnvio}</p>
+                <p><span class="label">Código Envío:</span> ${codigoEnvio}</p>
+                <p><span class="label">Día/Hora:</span> ${diaHora}</p>
+                <p><span class="label">Hora:</span> ${hora}</p>
+                <p><span class="label">Número de Envío:</span> ${numeroEnvio}</p>
+                <p><span class="label">Cliente:</span> ${cliente}</p>
+                <p><span class="label">Nombre del Cliente:</span> ${nombreCliente}</p>
+            </div>
+            <hr>
+        `;
+        registrosContainer.innerHTML = registroHTML;
+    </script>
+</body>
+</html>
